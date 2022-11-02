@@ -6,6 +6,9 @@
 html{
     font-family: 'Lato', sans-serif;;
 }
+#app{
+    background-color: var(--green);
+}
 img{
     max-width: 100%;
     width: 50px;
@@ -29,14 +32,16 @@ i{
 }
 .window{
     width: 90%;
-    margin: 6em auto;
+    padding-top: 6em;
+    margin: 0 auto;
 }
 .container{
     display: flex;
-    gap: 2px;
+    gap: 1px;
 }
 .side-bar{
     width: calc(100% / 2 );
+    background-color: white;
     /* DEBUG */
     border: 1px solid black;
 }
@@ -74,6 +79,10 @@ i{
 .notification a{
     font-size: .9em;
     color: gray;
+}
+.notification .text-noti{
+    display: flex;
+    flex-direction: column;
 }
 .search{
     display: flex;
@@ -134,4 +143,30 @@ p{
 }
 .keyboard input{
     padding: .5em 20em;
+}
+.message-row{
+    display: flex;
+    width: 100%;
+    position: relative;
+}
+.message{
+    margin: 2em;
+    border-radius: 15px;
+    padding: .5em;
+    width: 30%;
+    position: relative;
+}
+.message-hour{
+    position: absolute;
+    right: 5px;
+    bottom: .3em;
+}
+.sent{
+    position: absolute;
+    right: 10px;
+    background-color: var(--sent);
+}
+.incoming{
+    position: absolute;
+    background-color:white;
 }
