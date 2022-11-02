@@ -1,0 +1,94 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <!-- Css -->
+    <link rel="stylesheet" href="css/style.css">
+    <!-- Vue -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/vue/3.2.41/vue.global.min.js"></script>
+    <!-- Fontawesome -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.2.0/css/all.min.css" integrity="sha512-xh6O/CkQoPOWDdYTDqeRdPCVd1SpvCA9XXcUnZS2FmJNp1coAFzvtCN9BmamE+4aHK8yyUHUSCcJHgXloTyT2A==" crossorigin="anonymous" referrerpolicy="no-referrer" />
+    <!-- Google fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Lato:ital,wght@0,100;0,300;0,400;0,700;0,900;1,100;1,300;1,400;1,700;1,900&display=swap" rel="stylesheet">
+    <title>Boolzapp</title>
+</head>
+<body>
+    <div id="app">
+        <div class="wrapper">
+            <div class="window">
+                <main>
+                    <div class="container">
+                        <div class="side-bar">
+                            <div class="top-side">
+                                <div class="left-side">
+                                    <img src="img/avatar_io.jpg" alt="avatar_io">
+                                    <p>Sofia</p>
+                                </div>
+                                <div class="icon">
+                                    <i class="fa-solid fa-circle-notch"></i>
+                                    <i class="fa-solid fa-message"></i>
+                                    <i class="fa-solid fa-ellipsis-vertical"></i>
+                                </div>
+                            </div>
+                            <div class="notification">
+                                <i class="fa-solid fa-bell-slash"></i>
+                                <div class="text-noti">
+                                    <p>Ricevi notifiche di nuovi messaggi</p>
+                                    <a href="">Attiva notifiche desktop</a>
+                                </div>
+                            </div>
+                            <div class="search">
+                                <label for="search"></label>
+                                <i class="fa-solid fa-magnifying-glass"></i>
+                                <input type="text" id="search" placeholder="Cerca o inizia una nuova chat">
+                            </div>
+                            <div class="side-chat" v-for="(user, index) in contacts">
+                                <img :src=user.avatar alt="{{user.name}}">
+                                <div class="text-side-chat">
+                                    <h4>{{user.name}}</h4>
+                                    <p>Ultimo messaggio inviato</p>
+                                </div>
+                                <div class="hour">
+                                    <p>12:00</p>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="chat">
+                            <div class="header-chat">
+                                <div class="left-chat">
+                                    <img src="img/avatar_1.jpg" alt="">
+                                    <div class="text-side-chat">
+                                        <span>Michele</span> 
+                                        <p>Ultimo accesso alle 12:00</p>
+                                    </div>
+                                </div>
+                                <div class="icon">
+                                    <i class="fa-solid fa-magnifying-glass"></i>
+                                    <i class="fa-solid fa-paperclip"></i>
+                                    <i class="fa-solid fa-ellipsis-vertical"></i>
+                                </div>
+                            </div>
+                            <div class="main-chat"></div>
+
+                            <div class="keyboard">
+                                <i class="fa-regular fa-face-smile"></i>
+                                <div class="write-message">
+                                    <label for="message"></label>
+                                    <input type="text" id="message" placeholder="Scrivi un messaggio">
+                                </div>
+                                <i class="fa-solid fa-microphone"></i>
+                            </div>
+                        </div>
+                    </div>
+                </main>
+                <footer></footer>
+            </div>
+        </div>
+    </div>
+    <script src="js/script.js"></script>
+</body>
+</html>

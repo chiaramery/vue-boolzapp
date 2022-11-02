@@ -1,0 +1,137 @@
+*{
+    padding: 0;
+    margin: 0;
+    box-sizing: border-box;
+}
+html{
+    font-family: 'Lato', sans-serif;;
+}
+img{
+    max-width: 100%;
+    width: 50px;
+    border-radius: 50px;
+}
+i{
+    font-size: 1.2em;
+    cursor: pointer;
+    color: gray;
+}
+:root{
+    --green: rgb(32 168 133);
+    --gray: rgb(234 234 234);
+    --sent: rgb(219 253 212);
+    --notification: rgb(150 220 250);
+    --keyboard: rgb(243 238 234);
+}
+.wrapper{
+    width: 100vw;
+    height: 100vh;
+}
+.window{
+    width: 90%;
+    margin: 6em auto;
+}
+.container{
+    display: flex;
+    gap: 2px;
+}
+.side-bar{
+    width: calc(100% / 2 );
+    /* DEBUG */
+    border: 1px solid black;
+}
+.top-side{
+    padding: .5em;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    background-color: var(--gray);
+}
+.left-side{
+    display: flex;
+    align-items: center;
+}
+.icon{
+    display: flex;
+}
+.icon i{
+    margin: 5px;
+}
+.notification{
+    padding: .8em;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    background-color: var(--notification);
+}
+.notification i{
+    font-size: 1.3rem;
+    background-color: white;
+    color: var(--notification);
+    padding: .5em;
+    border-radius: 60%;
+}
+.notification a{
+    font-size: .9em;
+    color: gray;
+}
+.search{
+    display: flex;
+    justify-content: space-around;
+    align-items: center;
+    padding: .3em;
+}
+.search input{
+    padding: .7em 5.4em;
+    border: 1px solid lightgray;
+}
+.search i{
+    margin-right: 2px;
+    padding: .4em 1em;
+    border: 1px solid lightgray;
+}
+.side-chat{
+    display: flex;
+    align-items: center;
+    padding: .5em 1em;
+    border-bottom: 1px solid lightgray;
+    justify-content: space-around;
+}
+p{
+    font-size: .9em;
+    color: gray;
+}
+.chat{
+    width: 100%;
+    background-color: bisque;
+    /* DEBUG */
+    border: 1px solid black;
+}
+.left-chat{
+    display: flex;
+    align-items: center;
+}
+.header-chat{
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: .5em;
+    background-color: var(--gray);
+}
+.main-chat{
+    height: 60vh;
+}
+.keyboard{
+    height: 5vh;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    background-color: var(--keyboard);
+}
+.keyboard i{
+    font-size: 1.5em;
+    padding: 3em;
+}
+.keyboard input{
+    padding: .5em 20em;
+}
