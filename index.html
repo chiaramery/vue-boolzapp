@@ -18,109 +18,101 @@
 </head>
 <body>
     <div id="app">
-        <div class="wrapper">
-            <div class="window">
-                <main>
-                    <div class="container">
-                        <!-- Side bar -->
-                        <div class="side-bar">
-                            <div class="top-side">
-                                <div class="left-side">
-                                    <img src="img/avatar_io.jpg" alt="avatar_io">
-                                    <span>Sofia</span>
-                                </div>
-                                <div class="icon">
-                                    <i class="fa-solid fa-circle-notch"></i>
-                                    <i class="fa-solid fa-message"></i>
-                                    <i class="fa-solid fa-ellipsis-vertical"></i>
-                                </div>
-                            </div>
-                            <!-- Notifiche -->
-                            <div class="notification">
-                                <i class="fa-solid fa-bell-slash"></i>
-                                <div class="text-noti">
-                                    <span>Ricevi notifiche di nuovi messaggi</span>
-                                    <a href="">Attiva notifiche desktop</a>
-                                </div>
-                            </div>
-                            <!-- Ricerca nei contatti -->
-                            <div class="search">
-                                <label for="search"></label>
-                                <i class="fa-solid fa-magnifying-glass"></i>
-                                <input type="text" id="search" placeholder="Cerca o inizia una nuova chat">
-                            </div>
-                            <!-- Lista contatti -->
-                            <div class="side-chat" v-for="(user, index) in contacts" @click="changeContact(index)" @mouseover="hover" :class="active === index ? 'hover' : ''">
-                                <img :src="`img/avatar${user.avatar}.jpg`" alt="user.name">
-                                <div class="text-side-chat">
-                                    <h4>{{user.name}}</h4>
-                                    <p>Ultimo messaggio</p>
-                                </div>
-                                <div class="hour">
-                                    <p>12:00</p>
-                                </div>
-                            </div>
+        <div class="container">
+            <div class="side-bar">
+                <!-- Header bar -->
+                <div class="header">
+                    <div class="user">
+                        <img class="avatar" src="img/avatar_io.jpg" alt="">
+                        <p>Sofia</p>
+                    </div>
+                    <div class="icon">
+                            <i class="fas fa-circle-notch"></i>
+                            <i class="fas fa-comment-alt"></i>
+                            <i class="fas fa-ellipsis-v"></i>
+                    </div>
+                </div>
+                <!-- Notification -->
+                <div class="notification">
+                    <i class="fa-solid fa-bell-slash"></i>
+                    <div class="text-noti">
+                        <p>Ricevi notifiche di nuovi messaggi</p>
+                        <a href="">Attiva notifiche desktop</a>
+                    </div>
+                </div>
+                <!-- Search -->
+                <section class="search-section">
+                    <div class="search">
+                      <label for="search-input">
+                        <span class="sr-only">Inizia la ricerca</span>
+                        <i class="fa fa-search" aria-hidden="true"></i>
+                      </label>
+                      <input type="text" id="search-input" @keyup="filterContacts"/>
+                    </div>
+                  </section>
+                  <!-- Contact list -->
+                  <div class="contact-list">
+                    <div class="contact" v-for="(user, index) in contacts" @click="changeContact(index)"  :class="activeContact === index ? 'hover' : ' ' " @mouseover="hover">
+                        <img class="avatar" :src="`img/avatar${user.avatar}.jpg`" alt="user.name">
+                        <div class="text-side-chat">
+                            <h4>{{user.name}}</h4>
+                            <span>Ultimo messaggio</span>
                         </div>
-                        <!-- Chat -->
-                        <div class="chat">
-                            <div class="header-chat">
-                                <div class="left-chat">
-                                    <img :src="`img/avatar${contacts[active].avatar}.jpg`" alt="">
-                                    <div class="text-side-chat">
-                                        <!-- Header chat -->
-                                        <span>{{ contacts[active].name }}</span> 
-                                        <p>Ultimo accesso alle 12:00</p>
-                                    </div>
-                                </div>
-                                <div class="icon">
-                                    <i class="fa-solid fa-magnifying-glass"></i>
-                                    <i class="fa-solid fa-paperclip"></i>
-                                    <i class="fa-solid fa-ellipsis-vertical"></i>
-                                </div>
-                            </div>
-                            <!-- Messagi -->
-                            <section class="messages-section">
-                                <!-- Inviati -->
-                                <div class="message" v-for="(messageObj, index) in contacts[active].messages" :class="`${messageObj.status}`">
-                                    <div class="message-box">
-                                        <div class="message-text">
-                                            {{ messageObj.message }}
-                                        </div>
-                                        <div class="message-time">
-                                        <small> {{ messageObj.date }} </small>
-                                        </div>
-                                    </div>
-                                </div>
-                                
-                                <!-- Ricevuti -->
-                                <div class="message recieved">
-                                    <div class="message-box">
-                                        <div class="message-text">
-                                        Ciao, come stai?
-                                        </div>
-                                        <div class="message-time">
-                                        <small> 12:00 </small>
-                                        </div>
-                                    </div>
-                                </div>
-                            </section>
-                            <!-- /Messagi -->
-
-                            <!-- Tastiera -->
-                            <div class="keyboard">
-                                <i class="fa-regular fa-face-smile"></i>
-                                <div class="write-message">
-                                    <label for="new-message"></label>
-                                    <input type="text" id="new-message" placeholder="Scrivi un messaggio" v-model.trim="newMessage" @keyup.enter="writeMessage">
-                                </div>
-                                <i class="fa-solid fa-microphone"></i>
-                            </div>
-
+                        <div class="hour">
+                            <p>12:00</p>
                         </div>
                     </div>
-                </main>
-
-
+                  </div>
+            </div>
+            <!-- Main chat -->
+            <div class="main-chat">
+                <!-- Header -->
+                <div class="header">
+                    <div class="user">
+                        <img
+                          class="avatar"
+                          :src="`img/avatar${contacts[activeContact].avatar}.jpg`"
+                          alt="User avatar"
+                        />
+                        <div class="user-text">
+                          <h3>{{ contacts[activeContact].name }}</h3>
+                          <span>Ultimo accesso</span>
+                        </div>
+                      </div>
+                      <div class="icon">
+                        <i class="fas fa-circle-notch"></i>
+                        <i class="fas fa-comment-alt"></i>
+                        <i class="fas fa-ellipsis-v"></i>
+                      </div>
+                </div>
+                <!-- Messages -->
+                <section class="messages-section">
+                    <!-- Single Message -->
+                    <div v-for="(messageObj, index) in contacts[activeContact].messages"
+                    class="message"
+                    :class="`${messageObj.status}`"
+                    >
+                    <div class="message-box">
+                        <div class="message-text">{{ messageObj.message }}</div>
+                        <div class="message-time">
+                        <small> {{ messageObj.date }} </small>
+                        </div>
+                    </div>
+                    </div>
+                    <!-- /Single Message -->
+                </section>
+                <!-- Keyboard -->
+                <div class="keyboard">
+                    <div class="icon">
+                        <i class="fa-regular fa-face-smile"></i>
+                    </div>
+                        <div class="new-message">
+                            <input type="text" v-model.trim="newMessage" @keyup.enter="addMessage">
+                        </div>
+                        <div class="icon">
+                            <i class="fa-solid fa-microphone"></i>
+                        </div>
+                </div>
             </div>
         </div>
     </div>

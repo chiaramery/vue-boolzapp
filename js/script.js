@@ -6,8 +6,8 @@ const { createApp } = Vue;
 createApp({
   data () {
     return {
-        active: 0,
-        newMessage:'', 
+        activeContact: 0,
+        newMessage: "",
         contacts: [
     {
         name: 'Michele',
@@ -176,35 +176,44 @@ createApp({
 },
     methods: {
         changeContact(index) {
-            this.active = index;
-          },
-          writeMessage() {
-            // Se il nuovo messaggio non è vuoto
-            if(this.newMessage !== ''){
-                // Accedere ai messaggi del contatto active
-                const messageArray = this.contacts[this.active].messages;
+            this.activeContact = index;
+        },
+        addMessage() {
+            // this.activeContactBot = this.activeContact;
+            const activeContactBot = this.activeContact;
+            // SE il messaggio non è stringa vuota
+            if (this.newMessage !== "") {
+              // Accedere ai messaggi del contatto corrente
+              const messagesArray = this.contacts[this.activeContact].messages;
+              // Creare un nuovo oggetto messaggio
+              const newMessageObj = {
+                date: this.generateDateTime(),
+                message: this.newMessage,
+                status: "sent",
+              };
+              // Pushare questo oggetto nell'array di messaggi
+              messagesArray.push(newMessageObj);
+              // Svuotare l'input
+              this.newMessage = "";
+      
+              // Set del timer per la risposta
+              // setTimeout(this.recieveResponse, 1000);
+              setTimeout(() => {
+                console.log(this.activeContact, activeContactBot);
+                const newMessageObj = {
+                  date: this.generateDateTime(),
+                  message: "ok",
+                  status: "received",
                 };
-                // Pushare ul messaggio nell'array messaggi
-                messageArray.push(newMessageO);
-                // Svuotare l'input
-                this.newMessage = '';
-
-
-                // Settare timer per risposta 'ok'
-                setTimeout(() => {
-                    const newMessageO = {
-                      date: this.generateDateTime(),
-                      message: "ok",
-                      status: "received",
-                    };
-                  }, 1000); 
-          },
-
-          generateDateTime() {
+                this.contacts[activeContactBot].messages.push(newMessageObj);
+              }, 1000);
+            }
+        },
+        generateDateTime() {
             return dt
               .now()
               .setLocale("it")
               .toLocaleString(dt.DATETIME_SHORT_WITH_SECONDS);
-          },
+        },
   },
 }).mount("#app");

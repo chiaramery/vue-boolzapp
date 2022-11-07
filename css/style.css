@@ -6,6 +6,9 @@
 html{
     font-family: 'Lato', sans-serif;;
 }
+img{
+    width: 100%;
+}
 #app{
     position: relative;
     width: 100%;
@@ -13,21 +16,12 @@ html{
     background-image: linear-gradient(
         to bottom,
         var(--green) 0%,
-        var(--green) 15vh,
-        var(--gray) 15vh,
+        var(--green) 20vh,
+        var(--gray) 20vh,
         var(--gray) 100%
     );
 }
-img{
-    max-width: 975px;
-    width: 50px;
-    border-radius: 50px;
-}
-i{
-    font-size: 1.2em;
-    cursor: pointer;
-    color: gray;
-}
+/* Utilities */
 :root{
     --green: rgb(32 168 133);
     --gray: rgb(234 234 234);
@@ -35,54 +29,58 @@ i{
     --notification: rgb(150 220 250);
     --keyboard: rgb(243 238 234);
 }
-.wrapper{
-    width: 100vw;
-    height: 100vh;
-}
-.window{
-    position: absolute;
-    top: 50%;
-    left: 50%;
-    transform: translate(-50%, -50%);
-    display: flex;
+.container{
     width: 80%;
     min-width: 967px;
     height: 80vh;
-}
-.container{
+    top: 50%;
+    left: 50%;
+    position: absolute;
+    transform: translate(-50%, -50%);
     display: flex;
     gap: 1px;
 }
-.side-bar{
-    width: calc(100% / 2 );
-    background-color: white;
-    border: 1px solid black;
+.avatar{
+    width: 50px;
+    border-radius: 50px;
 }
-.top-side{
-    padding: .5em;
-    display: flex;
-    align-items: center;
-    justify-content: space-between;
-    background-color: var(--gray);
-}
-.left-side{
-    display: flex;
-    align-items: center;
+span{
+    color: gray;
 }
 .hover{
     background-color:lightgray;
 }
-.icon{
+.sr-only {
+    display: none;
+}
+/* SIDE BAR */
+.side-bar{
+    width: 35%;
+    background-color: white;
+    border: 1px solid black;
+}
+.header{
+    background-color: var(--gray);
+    height: 6vh;
     display: flex;
+    align-items: center;
+    justify-content: space-between;
+}
+.user{
+    display: flex;
+    align-items: center;
 }
 .icon i{
-    margin: 5px;
+    color: gray;
+    font-size: 1.3em;
+    margin: .3rem;
+    cursor: pointer;
 }
+/* Notification */
 .notification{
     padding: .8em;
     display: flex;
     align-items: center;
-    justify-content: space-between;
     background-color: var(--notification);
 }
 .notification i{
@@ -96,92 +94,69 @@ i{
     font-size: .9em;
     color: gray;
 }
-.notification .text-noti{
+.text-noti{
+    padding-left: 3em;
     display: flex;
     flex-direction: column;
 }
-.search{
+/* Search */
+.search {
+    padding: .5em;
+    width: 90%;
+    margin: auto;
+    display: flex;
+}
+.search label {
+    background-color: white;
+    padding: .5rem .8rem;
+    border-color: gray;
+    border-style: solid;
+    border-width: 1px 0px 1px 1px;
+    border-radius: 5px 0px 0px 5px;
+}
+.search input {
+    background-color: white;
+    flex-grow: 1;
+    border-color: gray;
+    border-style: solid;
+    border-width: 1px 1px 1px 0px;
+    border-radius: 0px 5px 5px 0px;
+}
+/* Contact list */
+.contact-list{
+    overflow-y: scroll;
+    background-color: var(--);
+}
+.contact{
+    padding: 1rem;
     display: flex;
     justify-content: space-around;
-    align-items: center;
-    padding: .3em;
-}
-.search input{
-    padding: .7em 5.4em;
-    border: 1px solid lightgray;
-}
-.search i{
-    margin-right: 2px;
-    padding: .4em 1em;
-    border: 1px solid lightgray;
-}
-.side-chat{
-    display: flex;
-    align-items: center;
-    padding: .5em 1em;
     border-bottom: 1px solid lightgray;
-    justify-content: space-around;
 }
-p{
-    font-size: .9em;
-    color: gray;
-}
-/* Chat */
-.chat{
+/* Message */
+.main-chat{
     display: flex;
     flex-direction: column;
-    width: 100%;
-    background-image: url(../img/mine.jpg);
-    /* DEBUG */
+    justify-content: space-between;
+    width: 65%;
+    background-image: url("../img/mine.jpg");
     border: 1px solid black;
 }
-.left-chat{
-    display: flex;
-    align-items: center;
-}
-.header-chat{
-    display: flex;
-    align-items: center;
-    justify-content: space-between;
-    padding: .5em;
-    background-color: var(--gray);
-}
-/* Tastiera */
 .keyboard{
-    height: 5vh;
-    display: flex;
-    align-items: center;
-    justify-content: space-between;
-    background-color: var(--keyboard);
-}
-.keyboard i{
-    font-size: 1.5em;
-    padding: 3em;
-}
-.keyboard input{
-    padding: .5em 20em;
-}
-/* MESSAGE */
-.messages-section {
-    flex-grow: 1;
+    height: 6vh;
     width: 100%;
-    background-image: url("../img/mine.jpg");
-    padding-top: 2rem;
+    display: flex;
+    justify-content: space-around;
+    align-items: center;
+    background-color:var(--keyboard);
 }
-
+.keyboard.icon{
+    width: 15%;
+}
 .message {
     display: flex;
     padding: .5rem 1rem;
 }
-
-.sent {
-    justify-content: flex-end;
-}
-
-.recieved {
-    justify-content: flex-start;
-}
-
 .message-box {
     background-color: white;
     min-width: 250px;
@@ -189,35 +164,26 @@ p{
     padding: .5rem;
     border-radius: 10px;
 }
-
+.sent {
+    justify-content: flex-end;
+}
+.received {
+    justify-content: flex-start;
+}
 .sent .message-box {
     background-color: var(--sent);
 }
-
-.recieved .message-box {
+.received .message-box {
     background-color: white;
 }
-
-.message-time {
-    text-align: right;
-    font-size: .6rem;
-}
-/* Nuovo messaggio */
-
 .new-message {
     height: 70px;
     width: 100%;
-    background-color: lightgray;
     display: flex;
     justify-content: center;
     align-items: center;
 }
-
-.new-message-input {
-    width: 70%;
-}
-
-.new-message-input input {
+.new-message input {
     width: 100%;
     padding: .6rem .3rem;
 }
